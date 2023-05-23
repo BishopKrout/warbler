@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Liked Warbles</h1>
+  <ul>
+    {% for like in liked_messages %}
+      <li>
+        <p>{{ like.message.text }}</p>
+        <p>Written by: <a href="/users/{{ like.message.user.id }}">{{ like.message.user.username }}</a></p>
+        <p>Likes: {{ like.message.likes_count }}</p>
+        <form method="POST" action="/messages/{{ like.message.id }}/unlike">
+          <button type="submit" class="btn btn-primary">Unlike</button>
+        </form>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
